@@ -15,9 +15,9 @@ describe("#wordSearch()", function() {
       ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
       ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
       ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
-    ], 'FRANK')
+    ], 'HWB')
 
-    assert.isFalse(result);
+    assert.isTrue(result);
   });
 
   it("should return true if the word is present", function() {
@@ -34,5 +34,10 @@ describe("#wordSearch()", function() {
     ], 'SEINFELD')
 
     assert.isTrue(result);
+  });
+
+  it("should return false if the matrix is empty", function() {
+    const result = wordSearch([] , 'random')
+    assert.isFalse(result);
   });
 });

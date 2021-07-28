@@ -1,8 +1,27 @@
-const wordSearch = (letters, word) => { 
-    const horizontalJoin = letters.map(ls => ls.join(''))
-    for (l of horizontalJoin) {
-        if (l.includes(word)) return true
-    }
-}
+const transpose = require('./transpose')
 
-module.exports = wordSearch
+const wordSearch = (letters, word) => { 
+
+    if (letters.length === 0) {
+        return false;
+    }
+    
+    const horizontalJoin = letters.map(row => row.join(''));
+
+    for (const line of horizontalJoin) {
+        if (line.split(word)[0] !== line) return true;
+    }
+
+    const transposedMatrix = transpose(letters);
+    const verticalJoin = transposedMatrix.map(row => row.join(''));
+    
+    for (const line of verticalJoin) {
+        if (line.split(word)[0] !== line) return true;
+    }
+
+    console.log(verticalJoin);
+
+    return false;
+};
+
+module.exports = wordSearch;
